@@ -1,0 +1,9 @@
+chromadb
+fastapi
+openai
+pydantic
+pydantic-settings
+pypdf
+pytest
+python-dotenv
+uvicorn
