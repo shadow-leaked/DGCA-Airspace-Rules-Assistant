@@ -9,21 +9,19 @@
 ![React](https://img.shields.io/badge/React-18-61dafb)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-## Demo Video
+## Screenshots
 
-https://github.com/shadow-leaked/DGCA-Airspace-Rules-Assistant/assets/recording.mp4
+### Homepage
+![Homepage](./assets/Images/Homepage.png)
 
-<details>
-<summary>🎥 Click to expand video player</summary>
+### Chat Interface - Loading State
+![Chat Loading](./assets/Images/chat_loading.png)
 
-<video src="https://github.com/shadow-leaked/DGCA-Airspace-Rules-Assistant/raw/main/assets/recording.mp4" width="100%" controls>
-  <source src="https://github.com/shadow-leaked/DGCA-Airspace-Rules-Assistant/raw/main/assets/recording.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+### Chat Interface - AI Reply with Sources
+![Chat Reply](./assets/Images/chat_reply.png)
 
-</details>
-
-*Demo of the DGCA Drone Rules Assistant in action - RAG system answering drone regulation queries*
+### Domain Restriction Guardrail
+![Domain Restriction](./assets/Images/domain_restriction.png)
 
 ## Overview
 
