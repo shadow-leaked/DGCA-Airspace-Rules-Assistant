@@ -58,10 +58,6 @@ logs/
 
 # Project specific - exclude from git
 docs/
-*.gif
-*.mp4
-*.mov
-*.avi
 screenshots/
 recordings/
 
