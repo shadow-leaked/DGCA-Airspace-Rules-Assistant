@@ -83,7 +83,7 @@ export default function Navbar() {
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="https://github.com"
+              href="https://github.com/shadow-leaked/DGCA-Airspace-Rules-Assistant"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 text-sm font-medium text-dark-300 hover:text-white transition-colors"
