@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DGCA Airspace Rules Assistant</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="chat-panel" aria-label="DGCA Airspace Rules Assistant">
+        <header class="topbar">
+          <div>
+            <h1>DGCA Airspace Rules Assistant</h1>
+            <p>Ask grounded questions about Indian drone, UAS, NPNT, Digital Sky, and airspace rules.</p>
+          </div>
+          <div class="status" id="status">Ready</div>
+        </header>
+
+        <div class="messages" id="messages" aria-live="polite">
+          <article class="message assistant">
+            <div class="bubble">
+              Ask a regulatory question to search your indexed PDFs.
+            </div>
+          </article>
+        </div>
+
+        <form class="composer" id="chat-form">
+          <textarea
+            id="query"
+            name="query"
+            rows="2"
+            placeholder="What is NPNT?"
+            autocomplete="off"
+            required
+          ></textarea>
+          <button type="submit" title="Send question">Send</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

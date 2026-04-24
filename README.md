@@ -1,233 +1,229 @@
-# DGCA Airspace Rules Assistant
+# DGCA Drone Rules Assistant
 
-> Enterprise-grade RAG architecture for grounded answers on Indian drone regulations, DGCA rules, NPNT workflows, and Digital Sky documentation.
+**AI-powered RAG (Retrieval-Augmented Generation) system for Indian DGCA drone regulations.**
 
-<p align="center">
-  <strong>Regulatory Intelligence</strong> |
-  <strong>Grounded Retrieval</strong> |
-  <strong>Source-Aware Answers</strong> |
-  <strong>Scalable AI Architecture</strong>
-</p>
+> Built by **Aribam Aditya Sharma** - System Architect
 
----
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green)
+![React](https://img.shields.io/badge/React-18-61dafb)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-## Project Stewardship
+## Demo Video
 
-**Lead Developer and Maintainer:** **Aribam Aditya Sharma**
+<video src="./assets/recording.mp4" width="100%" controls autoplay loop muted playsinline>
+  <source src="./assets/recording.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
-This repository is maintained with a professional research-and-engineering standard: clear system boundaries, auditable retrieval flow, grounded generation, modular ingestion, and a roadmap designed for production-grade regulatory intelligence systems.
+*Demo of the DGCA Drone Rules Assistant in action - RAG system answering drone regulation queries*
 
----
+## Overview
 
-## System Vision
+A production-ready RAG system that answers questions about DGCA drone regulations using:
+- **25+ official DGCA documents** (PDFs)
+- **Semantic search** via FAISS vector database
+- **Local LLM** (Ollama - Phi3/Mistral) for privacy and cost-effectiveness
+- **Modern React UI** with real-time chat interface
 
-The assistant is designed to answer drone-regulation questions using indexed official documents instead of model memory. It follows a retrieval-first architecture so responses can stay tied to DGCA, NPNT, and Digital Sky source material.
+## Architecture
 
-```text
-                         +----------------------+
-                         |      User Query      |
-                         +----------+-----------+
-                                    |
-                                    v
-                         +----------------------+
-                         |   Query Embedding    |
-                         +----------+-----------+
-                                    |
-                                    v
-         +---------------+----------------------+-------------+
-         |                                                    |
-         v                                                    v
-+-------------------+                              +----------------------+
-| Vector Database   |                              | Future Hybrid Search |
-| Chroma / FAISS    |                              | Keyword + Semantic   |
-+---------+---------+                              +----------+-----------+
-          |                                                   |
-          +------------------------+--------------------------+
-                                   |
-                                   v
-                         +----------------------+
-                         |  Top-K Context Chunks|
-                         +----------+-----------+
-                                    |
-                                    v
-                         +----------------------+
-                         | Grounded LLM Answer  |
-                         +----------+-----------+
-                                    |
-                                    v
-                         +----------------------+
-                         | Answer + Source Data |
-                         +----------------------+
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   React UI      │────▶│   FastAPI       │────▶│   FAISS         │
+│   (Frontend)    │     │   (Backend)     │     │   (Vector DB)   │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+                              │
+                              ▼
+                        ┌─────────────────┐
+                        │   Ollama LLM    │
+                        │   (Local AI)    │
+                        └─────────────────┘
 ```
 
----
+### RAG Pipeline
 
-## Architecture Matrix
+1. **Document Ingestion** - PDFs loaded via PyPDF
+2. **Text Chunking** - 700-char chunks with 100-char overlap
+3. **Embedding** - `all-MiniLM-L6-v2` (384D vectors)
+4. **Vector Storage** - FAISS IndexFlatIP
+5. **Retrieval** - Semantic search (top-5, min score 0.25)
+6. **Guardrails** - Domain validation & query sanitization
+7. **Generation** - Local LLM with grounded prompts
 
-| Layer | Responsibility | Implementation |
-| --- | --- | --- |
-| Interface | API entry point and request handling | `app/main.py`, `app/routes.py` |
-| Configuration | Environment, model, and vector DB settings | `app/config.py`, `.env` |
-| Embeddings | Convert user queries and chunks into vectors | `rag/embedder.py` |
-| Retrieval | Search regulation chunks by semantic similarity | `rag/retriever.py` |
-| Prompting | Enforce grounded, context-only responses | `rag/prompt.py` |
-| Generation | Produce final answer from retrieved context | `models/llm.py` |
-| Pipeline | Connect query, retrieval, prompt, and answer | `rag/pipeline.py` |
-| Ingestion | Load PDFs/text, chunk documents, index vectors | `ingestion/` |
-| Storage | Persist source text, metadata, and vector DB | `data/`, `vectorstore/` |
-| Evaluation | Validate prompt and RAG behavior | `tests/` |
+## Features
 
----
+- Chat interface with source citations
+- Confidence scores for answers
+- Domain validation (drone/UAS/NPNT terms only)
+- Document source tracking (page numbers)
+- Real-time indexing endpoint
+- Responsive dark-themed UI
+- 100% local processing (no API keys needed)
 
-## Capability Dashboard
+## Quick Start
 
-| Capability | Current State | Production Direction |
-| --- | --- | --- |
-| Context-based answering | Scaffolded | Add source-level citations |
-| Hallucination reduction | Prompt guardrails | Add answer validation checks |
-| Vector retrieval | Chroma-ready | Add FAISS option if needed |
-| Metadata tracking | Initial schema | Add document versioning |
-| PDF ingestion | Loader scaffold | Add batch ingestion CLI |
-| Chunking | Token-style word chunks | Add semantic chunking |
-| Re-ranking | Placeholder | Add cross-encoder or LLM reranker |
-| Hybrid search | Planned | Combine BM25 + vector retrieval |
-| Agentic retrieval | Optional | Add multi-step source discovery |
+### Prerequisites
 
----
+- Python 3.11+
+- Node.js 18+
+- Ollama (local LLM server)
 
-## Repository Structure
-
-```text
-.
-+-- app/
-|   +-- main.py
-|   +-- config.py
-|   +-- routes.py
-|
-+-- rag/
-|   +-- pipeline.py
-|   +-- retriever.py
-|   +-- embedder.py
-|   +-- prompt.py
-|   +-- reranker.py
-|
-+-- ingestion/
-|   +-- loader.py
-|   +-- chunker.py
-|   +-- indexer.py
-|
-+-- data/
-|   +-- raw/
-|   +-- processed/
-|   +-- metadata.json
-|
-+-- vectorstore/
-|   +-- chroma_db/
-|
-+-- models/
-|   +-- llm.py
-|
-+-- utils/
-|   +-- logger.py
-|   +-- helpers.py
-|
-+-- tests/
-|   +-- test_rag.py
-|
-+-- requirements.txt
-+-- .env
-+-- README.md
-```
-
----
-
-## Governance Principles
-
-| Principle | Enforcement |
-| --- | --- |
-| Grounded answers only | The prompt instructs the model to answer from retrieved context |
-| No invented legal claims | The assistant must say when indexed documents are insufficient |
-| Source awareness | Retrieved chunks return metadata for citation workflows |
-| Modular growth | Retrieval, embedding, prompting, and generation are separated |
-| Document freshness | Future metadata can track version, source URL, and ingestion date |
-
----
-
-## Run Locally
-
-Install dependencies:
+### 1. Clone & Setup Backend
 
 ```bash
+# Create virtual environment
+python -m venv .venv
+source .venv/bin/activate  # Linux/Mac
+# or: .venv\Scripts\activate  # Windows
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Download embedding model (first run)
+python -c "from src.embedder import get_embedding_model; get_embedding_model()"
+
+# Index documents (creates FAISS database)
+python -c "from src.vectordb import index_raw_documents; print(index_raw_documents())"
 ```
 
-Configure `.env`:
+### 2. Start Ollama
 
 ```bash
-OPENAI_API_KEY=your_key_here
-LLM_MODEL=gpt-4o-mini
-EMBEDDING_MODEL=text-embedding-3-small
-TOP_K=5
+# Install Ollama from https://ollama.ai
+ollama run phi3:mini
+# or: ollama run mistral
 ```
 
-Start the API:
+### 3. Start Backend
 
 ```bash
-uvicorn app.main:app --reload
+uvicorn src.api:app --reload --host 0.0.0.0 --port 8000
 ```
 
-Send a chat request:
+### 4. Setup Frontend
 
-```text
-POST /api/chat
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+### 5. Open in Browser
+
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:8000
+- API Docs: http://localhost:8000/docs
+
+## Document Library
+
+Indexed documents include:
+- Advisory Circulars (AC-101-1, AC-102-1, etc.)
+- ANSS Air Navigation Safety Standards
+- RPTO guidelines and syllabi
+- Drone Manufacturing Circulars
+- Public Notices
+- Class 3 Medical Procedures
+- Model UAS Regulations
+- ASM Manual
+
+Total: **25+ official DGCA documents**
+
+## API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/` | GET | Serve frontend |
+| `/chat` | POST | Query the RAG system |
+| `/index` | POST | Re-index documents |
+| `/docs` | GET | OpenAPI documentation |
+
+### Chat Request
+
+```json
+POST /chat
 {
   "query": "What is NPNT?"
 }
 ```
 
----
+### Chat Response
 
-## Data Pipeline
-
-```text
-Official Documents
-        |
-        v
-data/raw/
-        |
-        v
-Text Extraction
-        |
-        v
-Chunking + Metadata
-        |
-        v
-data/processed/
-        |
-        v
-Embeddings
-        |
-        v
-Chroma Vector Store
-        |
-        v
-Grounded Query Responses
+```json
+{
+  "answer": "NPNT stands for No Permission – No Takeoff...",
+  "sources": [
+    {"source": "AC-102-37.pdf", "page": 5, "chunk": 3}
+  ],
+  "confidence": 0.85
+}
 ```
 
----
+## Configuration
 
-## Roadmap
+Edit `.env` file:
 
-| Phase | Focus | Outcome |
-| --- | --- | --- |
-| Phase 1 | Prototype RAG | Working API, retrieval, and answer generation |
-| Phase 2 | Citation Quality | Source references, metadata display, freshness indicators |
-| Phase 3 | Retrieval Quality | Hybrid search, re-ranking, query expansion |
-| Phase 4 | Evaluation | Regression tests, answer quality checks, benchmark queries |
-| Phase 5 | Product Layer | Web UI, admin uploads, chat history, observability |
+```env
+OLLAMA_BASE_URL=http://localhost:11434
+LLM_MODEL=phi3:mini
+EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
+TOP_K=5
+MIN_RETRIEVAL_SCORE=0.25
+```
 
----
+## Project Structure
 
-## Mission Statement
+```
+DGCA-Airspace-Rules-Assistant/
+├── src/                    # Python backend
+│   ├── api.py             # FastAPI endpoints
+│   ├── retriever.py       # Vector search
+│   ├── vectordb.py        # FAISS operations
+│   ├── embedder.py        # Sentence transformers
+│   ├── guardrails.py      # Safety filters
+│   ├── loader.py          # PDF ingestion
+│   ├── splitter.py        # Text chunking
+│   └── settings.py        # Configuration
+├── frontend/              # React UI
+│   ├── src/components/    # React components
+│   ├── package.json
+│   └── vite.config.js
+├── data/raw/              # Source PDFs (25+)
+├── db/                    # FAISS index & metadata
+├── web/                   # Static files
+├── requirements.txt
+└── .env
+```
 
-To provide a reliable, source-grounded AI assistant for Indian drone regulation research, built with the discipline expected from serious regulatory technology systems.
+## System Architect
+
+**Aribam Aditya Sharma**
+
+This RAG system was designed and architected by Aribam Aditya Sharma, featuring:
+- Complete local LLM pipeline
+- Production-grade guardrails
+- Scalable vector search
+- Modern responsive UI
+
+## Tech Stack
+
+| Layer | Technologies |
+|-------|-------------|
+| Backend | FastAPI, Python 3.11, Uvicorn |
+| AI/ML | LangChain, Ollama, Phi3/Mistral |
+| Embeddings | sentence-transformers, all-MiniLM-L6-v2 |
+| Vector DB | FAISS, NumPy |
+| Documents | PyPDF, PDFMiner, Unstructured |
+| Frontend | React 18, Vite, TailwindCSS, Framer Motion |
+
+
+
+## License
+
+MIT License - See LICENSE file
+
+## Acknowledgments
+
+- DGCA (Directorate General of Civil Aviation) for official documents
+- Ollama team for local LLM infrastructure
+- LangChain community for RAG tooling
