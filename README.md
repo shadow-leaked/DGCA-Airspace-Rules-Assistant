@@ -34,9 +34,9 @@ The assistant is designed to answer drone-regulation questions using indexed off
                          +----------+-----------+
                                     |
                                     v
-        +----------------+----------------------+----------------+
-        |                                                       |
-        v                                                       v
+         +---------------+----------------------+-------------+
+         |                                                    |
+         v                                                    v
 +-------------------+                              +----------------------+
 | Vector Database   |                              | Future Hybrid Search |
 | Chroma / FAISS    |                              | Keyword + Semantic   |
