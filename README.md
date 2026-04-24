@@ -11,10 +11,17 @@
 
 ## Demo Video
 
-<video src="./assets/recording.mp4" width="100%" controls autoplay loop muted playsinline>
-  <source src="./assets/recording.mp4" type="video/mp4">
+https://github.com/shadow-leaked/DGCA-Airspace-Rules-Assistant/assets/recording.mp4
+
+<details>
+<summary>🎥 Click to expand video player</summary>
+
+<video src="https://github.com/shadow-leaked/DGCA-Airspace-Rules-Assistant/raw/main/assets/recording.mp4" width="100%" controls>
+  <source src="https://github.com/shadow-leaked/DGCA-Airspace-Rules-Assistant/raw/main/assets/recording.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
+
+</details>
 
 *Demo of the DGCA Drone Rules Assistant in action - RAG system answering drone regulation queries*
 
