@@ -13,7 +13,14 @@ export default function Footer() {
                 <User className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="font-bold text-white">Aribam Aditya Sharma</h3>
+                <a 
+                  href="https://noirxgaruda.rjsblog.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-white hover:text-blue-400 transition-colors"
+                >
+                  Aribam Aditya Sharma
+                </a>
                 <p className="text-xs text-blue-400">System Architect & Developer</p>
               </div>
             </div>
@@ -42,11 +49,20 @@ export default function Footer() {
                 LinkedIn
               </a>
               <a
-                href="mailto:shadowleaked@gmail.com"
+                href="mailto:aribamadityasharma@gmail.com"
                 className="px-4 py-2 bg-dark-800 hover:bg-dark-700 rounded-lg text-dark-300 hover:text-white transition-all flex items-center gap-2"
               >
                 <Mail className="w-4 h-4" />
                 Email
+              </a>
+              <a
+                href="https://noirxgaruda.rjsblog.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-dark-800 hover:bg-dark-700 rounded-lg text-dark-300 hover:text-white transition-all flex items-center gap-2"
+              >
+                <Globe className="w-4 h-4" />
+                Website
               </a>
             </div>
           </div>
@@ -76,15 +92,25 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li className="flex items-center gap-2 text-dark-400">
                 <Code className="w-4 h-4" />
-                FastAPI + React
+                <a href="https://fastapi.tiangolo.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
+                  FastAPI
+                </a>
+                {' + '}
+                <a href="https://react.dev" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
+                  React
+                </a>
               </li>
               <li className="flex items-center gap-2 text-dark-400">
                 <Database className="w-4 h-4" />
-                FAISS Vector DB
+                <a href="https://github.com/facebookresearch/faiss" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
+                  FAISS Vector DB
+                </a>
               </li>
               <li className="flex items-center gap-2 text-dark-400">
                 <Cpu className="w-4 h-4" />
-                Ollama (Local LLM)
+                <a href="https://ollama.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
+                  Ollama (Local LLM)
+                </a>
               </li>
               <li className="flex items-center gap-2 text-dark-400">
                 <ExternalLink className="w-4 h-4" />
@@ -102,7 +128,14 @@ export default function Footer() {
             <p className="text-sm text-dark-500">
               © {new Date().getFullYear()} DGCA Drone Rules Assistant. Built with{' '}
               <Heart className="w-4 h-4 inline text-red-400 mx-1" /> by{' '}
-              <span className="text-blue-400 font-medium">Aribam Aditya Sharma</span>
+              <a 
+                href="https://noirxgaruda.rjsblog.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 font-medium hover:underline"
+              >
+                Aribam Aditya Sharma
+              </a>
             </p>
             <div className="flex items-center gap-6 text-sm text-dark-500">
               <span className="flex items-center gap-2">

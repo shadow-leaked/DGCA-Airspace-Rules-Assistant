@@ -1,10 +1,39 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Plane, MessageSquare, Layers, FileText, Cpu } from 'lucide-react'
+import { Menu, X, MessageSquare, Layers, FileText, Cpu } from 'lucide-react'
+
+// Custom Drone/UAV Icon
+const DroneIcon = ({ className }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+    className={className}
+  >
+    {/* Quadcopter drone body */}
+    <circle cx="12" cy="12" r="3" />
+    {/* Front left arm and propeller */}
+    <line x1="12" y1="12" x2="5" y2="5" />
+    <circle cx="5" cy="5" r="1.5" />
+    {/* Front right arm and propeller */}
+    <line x1="12" y1="12" x2="19" y2="5" />
+    <circle cx="19" cy="5" r="1.5" />
+    {/* Rear left arm and propeller */}
+    <line x1="12" y1="12" x2="5" y2="19" />
+    <circle cx="5" cy="19" r="1.5" />
+    {/* Rear right arm and propeller */}
+    <line x1="12" y1="12" x2="19" y2="19" />
+    <circle cx="19" cy="19" r="1.5" />
+  </svg>
+)
 
 const navLinks = [
-  { path: '/', label: 'Home', icon: Plane },
+  { path: '/', label: 'Home', icon: DroneIcon },
   { path: '/chat', label: 'Chat', icon: MessageSquare },
   { path: '/architecture', label: 'Architecture', icon: Layers },
   { path: '/documents', label: 'Documents', icon: FileText },
@@ -38,7 +67,7 @@ export default function Navbar() {
             <div className="relative">
               <div className="absolute inset-0 bg-blue-500/30 blur-xl rounded-full group-hover:bg-blue-500/50 transition-all" />
               <div className="relative w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center">
-                <Plane className="w-6 h-6 text-white rotate-[-45deg]" />
+                <DroneIcon className="w-6 h-6 text-white" />
               </div>
             </div>
             <div className="hidden sm:block">
