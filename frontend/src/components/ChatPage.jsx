@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Send, Bot, User, Loader2, FileText, AlertCircle, CheckCircle2 } from 'lucide-react'
+import { Send, Bot, User, Loader2, FileText, AlertCircle, CheckCircle2, Sparkles, Shield } from 'lucide-react'
 
 export default function ChatPage() {
   const [messages, setMessages] = useState([
@@ -13,16 +13,8 @@ export default function ChatPage() {
   ])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const messagesEndRef = useRef(null)
+  const messagesContainerRef = useRef(null)
   const inputRef = useRef(null)
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }
-
-  useEffect(() => {
-    scrollToBottom()
-  }, [messages])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -67,6 +59,7 @@ export default function ChatPage() {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
+      e.stopPropagation()
       handleSubmit(e)
     }
   }
@@ -84,9 +77,28 @@ export default function ChatPage() {
       </motion.div>
 
       {/* Chat Container */}
-      <div className="glass-card overflow-hidden flex flex-col h-[calc(100vh-280px)] min-h-[500px]">
+      <div className="glass-card overflow-hidden flex flex-col h-[calc(100vh-200px)] min-h-[600px]">
+        {/* Chat Header */}
+        <div className="border-b border-dark-700/50 p-4 bg-dark-800/40">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center">
+              <Bot className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <h2 className="font-semibold text-white flex items-center gap-2">
+                DGCA AI Assistant
+                <Sparkles className="w-4 h-4 text-yellow-400" />
+              </h2>
+              <p className="text-xs text-dark-400 flex items-center gap-1">
+                <Shield className="w-3 h-3 text-green-400" />
+                RAG-powered • 25+ DGCA documents indexed
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
+        <div ref={messagesContainerRef} className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 scroll-smooth">
           <AnimatePresence initial={false}>
             {messages.map((message, index) => (
               <motion.div
@@ -178,7 +190,6 @@ export default function ChatPage() {
             </motion.div>
           )}
 
-          <div ref={messagesEndRef} />
         </div>
 
         {/* Input Area */}
