@@ -33,7 +33,7 @@ export default function Footer() {
                 GitHub
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/aditya-sharma-616b17272"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-dark-800 hover:bg-dark-700 rounded-lg text-dark-300 hover:text-white transition-all flex items-center gap-2"
@@ -42,7 +42,7 @@ export default function Footer() {
                 LinkedIn
               </a>
               <a
-                href="mailto:aribamadityasharma@gmail.com"
+                href="mailto:shadowleaked@gmail.com"
                 className="px-4 py-2 bg-dark-800 hover:bg-dark-700 rounded-lg text-dark-300 hover:text-white transition-all flex items-center gap-2"
               >
                 <Mail className="w-4 h-4" />
