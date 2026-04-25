@@ -1,47 +1,52 @@
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, Heart, ExternalLink, Code, Database, Cpu } from 'lucide-react'
+import { Github, Linkedin, Mail, Heart, ExternalLink, Code, Database, Cpu, User, Globe, Briefcase } from 'lucide-react'
 
 export default function Footer() {
   return (
     <footer className="border-t border-dark-700/50 bg-dark-900/50 mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
+          {/* About Me / Connect with Dev */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center">
-                <Database className="w-5 h-5 text-white" />
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center">
+                <User className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="font-bold text-white">DGCA DroneAI</h3>
-                <p className="text-xs text-dark-400">RAG-based Regulatory Assistant</p>
+                <h3 className="font-bold text-white">Aribam Aditya Sharma</h3>
+                <p className="text-xs text-blue-400">System Architect & Developer</p>
               </div>
             </div>
             <p className="text-dark-400 text-sm mb-4 max-w-md">
-              AI-powered retrieval-augmented generation system for Indian drone regulations. 
-              Built with FastAPI, LangChain, FAISS, and local LLMs.
+              Hi! I'm a software developer passionate about AI/ML and aviation technology. 
+              This RAG system is built from scratch to help drone operators navigate DGCA regulations. 
+              Let's connect and build something amazing together!
             </p>
             <div className="flex items-center gap-4">
               <a
-                href="#"
-                className="text-dark-400 hover:text-white transition-colors"
-                aria-label="GitHub"
+                href="https://github.com/shadow-leaked"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-dark-800 hover:bg-dark-700 rounded-lg text-dark-300 hover:text-white transition-all flex items-center gap-2"
               >
-                <Github className="w-5 h-5" />
+                <Github className="w-4 h-4" />
+                GitHub
               </a>
               <a
                 href="#"
-                className="text-dark-400 hover:text-white transition-colors"
-                aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-dark-800 hover:bg-dark-700 rounded-lg text-dark-300 hover:text-white transition-all flex items-center gap-2"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-4 h-4" />
+                LinkedIn
               </a>
               <a
-                href="mailto:aribam@example.com"
-                className="text-dark-400 hover:text-white transition-colors"
-                aria-label="Email"
+                href="mailto:aribamadityasharma@gmail.com"
+                className="px-4 py-2 bg-dark-800 hover:bg-dark-700 rounded-lg text-dark-300 hover:text-white transition-all flex items-center gap-2"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-4 h-4" />
+                Email
               </a>
             </div>
           </div>
